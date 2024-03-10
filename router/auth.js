@@ -71,7 +71,7 @@ app.post("/login", async (req, res) => {
     const { email, password } = req.body;
 
     // Find user by email
-    const userLogin = await User.findOne({ email }, { timeout: 20000 }));
+    const userLogin = await User.findOne({ email });
 
     if (!userLogin) {
       return res.status(401).json({ error: "Invalid email or password" });
