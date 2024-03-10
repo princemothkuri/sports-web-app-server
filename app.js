@@ -5,7 +5,11 @@ const bodyParser = require("body-parser");
 const app = express();
 const cors = require("cors");
 
-app.use(cors());
+// Allow requests from the specified origin
+app.use(cors({
+  origin: 'https://sports-web-app-weld.vercel.app',
+  credentials: true, // If your frontend sends credentials (like cookies), set this to true
+}));
 
 // app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(bodyParser.json());
