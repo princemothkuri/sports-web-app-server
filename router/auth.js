@@ -133,7 +133,7 @@ app.post("/search", authenticate, async (req, res) => {
         preferredActivities: 1,
         _id: 0, // Exclude the _id field
       })
-    );
+    
 
     res.status(200).json({ message: "ok", users: users });
   } catch (error) {
