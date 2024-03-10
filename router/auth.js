@@ -53,7 +53,7 @@ app.post("/register", async (req, res) => {
         type: "Point",
         coordinates: [longitude, latitude],
       },
-    });
+    }, { timeout: 20000 }));
 
     // Save user to the database
     await user.save();
@@ -71,7 +71,7 @@ app.post("/login", async (req, res) => {
     const { email, password } = req.body;
 
     // Find user by email
-    const userLogin = await User.findOne({ email });
+    const userLogin = await User.findOne({ email }, { timeout: 20000 }));
 
     if (!userLogin) {
       return res.status(401).json({ error: "Invalid email or password" });
@@ -100,7 +100,7 @@ app.post("/search", authenticate, async (req, res) => {
     const { latitude, longitude, distance } = req.body;
     const userIdString = req.userID.toString(); // Convert to string
 
-    const user = await User.findById(req.userID);
+    const user = await User.findById(req.userID, { timeout: 20000 }));
     // Extract the sportsInterests from the user object
     const sportsInterests = user.sportsInterests;
 
@@ -132,7 +132,7 @@ app.post("/search", authenticate, async (req, res) => {
         skillLevel: 1,
         preferredActivities: 1,
         _id: 0, // Exclude the _id field
-      }
+      }, { timeout: 20000 })
     );
 
     res.status(200).json({ message: "ok", users: users });
@@ -155,7 +155,7 @@ app.post("/currentuserlocation", authenticate, async (req, res) => {
     }
 
     // Update the user's location coordinates in the database
-    const user = await User.findById(req.userID);
+    const user = await User.findById(req.userID, { timeout: 20000 }));
 
     // Ensure that the user is found in the database
     if (!user) {
