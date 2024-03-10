@@ -1,0 +1,12 @@
+[
+  {
+    "location": {
+      "type": "Point",
+      "coordinates": [-74.006, 40.7128]
+    },
+    "email": "prince@gmail.com",
+    "sportsInterests": ["football", "basketball"],
+    "skillLevel": "intermediate",
+    "preferredActivities": ["playing matches", "training"]
+  }
+]
